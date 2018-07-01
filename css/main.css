@@ -1,0 +1,52 @@
+* {
+    box-sizing: border-box;
+}
+html, body, .container {
+    margin: 0px;
+    padding: 0px;
+    height: 100%;
+    width: 100%;
+    min-width: 1500px;
+    font-family: 'Pontano Sans', sans-serif;
+    background-color: #f5f5f5;
+}
+.container {
+    padding-top: 150px;
+    background-color: #f5f5f5;
+    display: flex;
+}
+
+.converter-box {
+    height: 400px;
+    width: 550px;
+    margin-left: 100px;
+    box-shadow: 1px 1px 10px 4px lightgrey;
+}
+.alc-hero {
+    height: 400px;
+    width: 550px;
+    margin-left: 180px;
+    background-size: cover;
+    background-position: 50%;
+    box-shadow: 1px 1px 10px 4px lightgrey;
+
+}
+
+
+.converter-header {
+    height: 50px;
+    margin-top: -20px;
+    box-shadow: 0px 1px 10px 0px lightgrey;
+}
+table {
+    height: 300px;
+    margin: 0px 60px
+}
+h2 {
+    text-align: center;
+    padding-top: 10px;
+    color: grey;
+}
+#fromAmount, #toAmount, select {
+    height: 50px;
+} 
