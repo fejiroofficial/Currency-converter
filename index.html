@@ -673,6 +673,59 @@
     <script src="index.js"></script>
     <script src="service-worker.js"></script>    
 </body>
-<script>      
+<script> 
+
+const dpPromise = idb.open('converter-db', 1, function (upgradeDb) {
+     var keyCurrencyStore =  upgradeDb.createObjectStore('Currency');
+ });    
+ 
+ const idbKeyval = {
+  get(key) {
+    return dbPromise.then(db => {
+      return db.transaction('Currency')
+        .objectStore('Currency').get(key);
+    });
+  },
+  set(key, val) {
+    return dbPromise.then(db => {
+      const tx = db.transaction('Currency', 'readwrite');
+      tx.objectStore('Currency').put(val, key);
+      return tx.complete;
+    });
+  },
+  delete(key) {
+    return dbPromise.then(db => {
+      const tx = db.transaction('Currency', 'readwrite');
+      tx.objectStore('Currency').delete(key);
+      return tx.complete;
+    });
+  },
+  clear() {
+    return dbPromise.then(db => {
+      const tx = db.transaction('Currency', 'readwrite');
+      tx.objectStore('Currency').clear();
+      return tx.complete;
+    });
+  },
+  keys() {
+    return dbPromise.then(db => {
+      const tx = db.transaction('Currency');
+      const keys = [];
+      const store = tx.objectStore('Currency');
+
+      // This would be store.getAllKeys(), but it isn't supported by Edge or Safari.
+      // openKeyCursor isn't supported by Safari, so we fall back
+      (store.iterateKeyCursor || store.iterateCursor).call(store, cursor => {
+        if (!cursor) return;
+        keys.push(cursor.key);
+        cursor.continue();
+      });
+
+      return tx.complete.then(() => keys);
+    });
+  }
+};
+
+
 </script>
 </html>
