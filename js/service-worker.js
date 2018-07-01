@@ -1,7 +1,9 @@
+var staticCacheName = 'curr-static-v1';
+
 self.addEventListener('install', function(e) {
     console.log ("[ServiceWorker] Installed")
     e.waitUntil(
-        caches.open('curr-static-v1').then(function(cache){
+        caches.open(staticCacheName).then(function(cache){
             return cache.addAll([
                 './',
                 '/index.html',
@@ -16,6 +18,23 @@ self.addEventListener('install', function(e) {
     )
  })
 
+ //updating static cache
+ self.addEventListener ('activate', function (event){
+     event.waitUntil(
+         caches.keys().then(function(cacheNames){
+             return Promise.all(
+                 cacheNames.filter(function(cacheName){
+                     return cacheName.startsWith('current-') && 
+                     cacheName != staticCacheName;
+                 }).map(function(cacheName){
+                     return cache.delete(cacheName); 
+                 })
+             );
+         })
+     )
+ })
+//responding with an entry from the cache
+//if i go offline the cache responds
 self.addEventListener('fetch', function (event){
     event.respondWith(
         caches.match(event.request).then(function(response){
@@ -24,3 +43,4 @@ self.addEventListener('fetch', function (event){
         })
     )
 })
+
