@@ -1,3 +1,14 @@
+
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('service-worker.js')
+    .then(function() {
+        console.log ("Service Worker is registered")
+    })
+    .catch(function() {
+        console.log ("Service Worker Failed to Register");
+    })
+}
+
 function convertCurrency() {
     let from = document.getElementById("from").value;
     let to = document.getElementById("to").value;

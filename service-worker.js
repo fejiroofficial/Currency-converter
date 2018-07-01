@@ -5,11 +5,9 @@ self.addEventListener('install', function(e) {
     e.waitUntil(
         caches.open(staticCacheName).then(function(cache){
             return cache.addAll([
-                './',
-                '../index.html',
-                'app.js',
+                'index.html',
                 'index.js',
-                '../css/main.css',
+                'css/main.css',
                 'https://cdn-images-1.medium.com/max/2000/1*kuyLm10Ry7fi-KlBB9MU3w.jpeg',
                 'https://free.currencyconverterapi.com/api/v5/convert?q=USD_NGN&compact=ultra'
 
@@ -19,20 +17,20 @@ self.addEventListener('install', function(e) {
  })
 
  //updating static cache
- self.addEventListener ('activate', function (event){
-     event.waitUntil(
-         caches.keys().then(function(cacheNames){
-             return Promise.all(
-                 cacheNames.filter(function(cacheName){
-                     return cacheName.startsWith('current-') && 
-                     cacheName != staticCacheName;
-                 }).map(function(cacheName){
-                     return cache.delete(cacheName); 
-                 })
-             );
-         })
-     )
- })
+//  self.addEventListener ('activate', function (event){
+//      event.waitUntil(
+//          caches.keys().then(function(cacheNames){
+//              return Promise.all(
+//                  cacheNames.filter(function(cacheName){
+//                      return cacheName.startsWith('current-') && 
+//                      cacheName != staticCacheName;
+//                  }).map(function(cacheName){
+//                      return cache.delete(cacheName); 
+//                  })
+//              );
+//          })
+//      )
+//  })
 //responding with an entry from the cache
 //if i go offline the cache responds
 self.addEventListener('fetch', function (event){
