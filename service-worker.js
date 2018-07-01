@@ -8,9 +8,7 @@ self.addEventListener('install', function(e) {
                 'index.html',
                 'index.js',
                 'css/main.css',
-                'https://cdn-images-1.medium.com/max/2000/1*kuyLm10Ry7fi-KlBB9MU3w.jpeg',
-                'https://free.currencyconverterapi.com/api/v5/convert?q=USD_NGN&compact=ultra'
-
+                'https://cdn-images-1.medium.com/max/2000/1*kuyLm10Ry7fi-KlBB9MU3w.jpeg'
             ])
         })
     )
