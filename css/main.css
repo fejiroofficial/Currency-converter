@@ -37,6 +37,7 @@ html, body, .container {
     height: 50px;
     margin-top: -20px;
     box-shadow: 0px 1px 10px 0px lightgrey;
+    background-color: lightblue;
 }
 table {
     height: 300px;
