@@ -726,6 +726,10 @@ const dpPromise = idb.open('converter-db', 1, function (upgradeDb) {
   }
 };
 
+let currencyrate = document.getElementById('to-amount').value;
+
+converter-db.set (`${from}_${to}`, currencyrate);
+
 
 </script>
 </html>
